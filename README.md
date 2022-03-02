@@ -24,3 +24,7 @@ https://github.com/localstack/awscli-local
 ```
 
 ## 
+
+```
+mvn archetype:generate -DgroupId=com.example -DartifactId=local_stack -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
