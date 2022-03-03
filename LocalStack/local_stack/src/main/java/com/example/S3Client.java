@@ -7,7 +7,6 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import org.apache.flink.shaded.jackson2.org.yaml.snakeyaml.Yaml;
 
 import java.io.FileOutputStream;
 import java.util.Arrays;
@@ -103,7 +102,7 @@ public class S3Client  {
         }
     }
 
-
+    /*
     public Map<String,Object> readYamlFile(String bucketName,String fileName) throws Exception
     {
         this.validate();
@@ -129,6 +128,7 @@ public class S3Client  {
         }
         return null;
     }
+    */
 
     public byte[] readFile(String bucketName,String fileName) throws Exception
     {

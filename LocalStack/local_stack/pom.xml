@@ -42,6 +42,33 @@
       <artifactId>aws-java-sdk-s3</artifactId>
     </dependency>  
 
+  <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-sts</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-iam</artifactId>
+  </dependency>
+
+  <dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcprov-jdk16</artifactId>
+    <version>1.45</version>
+</dependency>
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-kms</artifactId>
+ </dependency>
+
+ <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-kinesis -->
+<dependency>
+  <groupId>com.amazonaws</groupId>
+  <artifactId>aws-java-sdk-kinesis</artifactId>
+  <version>1.12.169</version>
+</dependency>
+
+
   </dependencies>
 
   <properties>

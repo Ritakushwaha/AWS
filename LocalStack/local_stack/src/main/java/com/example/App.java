@@ -1,14 +1,14 @@
-package com.example;
+package LocalStack.local_stack.src.main.java.com.example;
 
 import java.util.List;
+import java.util.Map;
+import LocalStack.local_stack.src.main.java.com.example.S3Client;
 
 public class App {
 
     public static S3Client s3 = new S3Client();
 
-    private static AmazonS3 s3;
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         String access_key = "test";
         String secret_key = "test";
@@ -16,9 +16,13 @@ public class App {
         String buck_name = "girbuck";
         String file_name = "example.yml";
 
+        /*
         s3.setCredentials(access_key,secret_key,region);
-        Map<String, Object> data = s3.readYamlFile(buck_name,file_name);
-        System.out.println(data);
+        byte[]arr = s3.readFile(buck_name,file_name);
+        System.out.println(arr);
+        */
+
+        
    
     }
 
