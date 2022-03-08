@@ -1,8 +1,7 @@
-package LocalStack.local_stack.src.main.java.com.example;
+package com.example;
 
 import java.util.List;
 import java.util.Map;
-import LocalStack.local_stack.src.main.java.com.example.S3Client;
 
 public class App {
 
@@ -15,14 +14,12 @@ public class App {
         String region = "us-east-1";
         String buck_name = "girbuck";
         String file_name = "example.yml";
-
+        
         /*
         s3.setCredentials(access_key,secret_key,region);
         byte[]arr = s3.readFile(buck_name,file_name);
         System.out.println(arr);
         */
-
-        
    
     }
 

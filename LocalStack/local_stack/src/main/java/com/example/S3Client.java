@@ -1,4 +1,4 @@
-package LocalStack.local_stack.src.main.java.com.example;
+package com.example;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -103,6 +103,7 @@ public class S3Client  {
     }
 
     /*
+    
     public Map<String,Object> readYamlFile(String bucketName,String fileName) throws Exception
     {
         this.validate();
