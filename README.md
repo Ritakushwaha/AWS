@@ -71,3 +71,39 @@ aws --endpoint-url=http://localhost:4566 kinesis list-streams
     ]
 }
 ```
+
+#### Describe stream summary
+```
+aws --endpoint-url=http://localhost:4566 kinesis describe-stream-summary --stream-name  teststream
+
+#output
+{
+    "StreamDescriptionSummary": {
+        "StreamName": "teststream",
+        "StreamARN": "arn:aws:kinesis:ap-south-1:000000000000:stream/teststream",
+        "StreamStatus": "ACTIVE",
+        "RetentionPeriodHours": 24,
+        "StreamCreationTimestamp": "2022-03-08T12:37:01.350000+05:30",
+        "EnhancedMonitoring": [
+            {
+                "ShardLevelMetrics": []
+            }
+        ],
+        "EncryptionType": "NONE",
+        "OpenShardCount": 1,
+        "ConsumerCount": 0
+    }
+}
+```
+
+#### Put record in stream
+```
+aws --endpoint-url=http://localhost:4566 kinesis put-record --stream-name teststream --partition-key 123 --data testdata
+
+#output
+{
+    "ShardId": "shardId-000000000000",
+    "SequenceNumber": "49627427787132837582775374258897639045913657614406778882",
+    "EncryptionType": "NONE"
+}
+```
