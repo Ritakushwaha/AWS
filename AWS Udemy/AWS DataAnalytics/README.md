@@ -24,15 +24,25 @@ Data Pipeline
 - stream processing framework
 
 ### 1. Kinesis Data Stream
+<div>
 <ol>
-<li>Kinesis Stream Records</li>
-<ul>
-<li>Data Blob - upto 1MB </li>
-<li>Record Key </li>
-<li>Sequence number </li>
-</ul>
+<li><a href = #stream>Kinesis Stream Records</a></li>
+<li><a href = #producer>Kinesis Producer</a></li>
+<li><a href=#consumer>Kinesis Consumer</a></li>
+<li><a href=#scaling>Kinesis Scaling Operations</a></li>
+</ol>
 
-<li>Kinesis Producer</li>
+<div id="stream">
+Kinesis Stream Records
+    <ul>
+        <li>Data Blob - upto 1MB </li>
+        <li>Record Key </li>
+        <li>Sequence number </li>
+    </ul>
+</div>
+
+<div id="producer">
+Kinesis Producer
 <ul>
     <li>Kinesis Producer SDK</li>
     <ul>
@@ -65,7 +75,10 @@ Data Pipeline
     </ul>
     <li>Spark, Log4j, Kafka</li>
 </ul>
-<li>Kinesis Consumer</li>
+</div>
+
+<div id="consumer">
+Kinesis Consumer
 <ul>
     <li>Kinesis Consumers - Classic</li>
     <ul>
@@ -100,7 +113,49 @@ Data Pipeline
         </ul>
     </ul>
     <li>Kinesis Enhanced Fan Out</li>
-<ol>
+    <ul>
+        <li>works with KCL 2.0 and lambda (nov 2018)</li>
+        <li>each consumer get 2MB/s of provisioned throughout per shard, means 20 consumer -> 40 MB/s per shard</li>
+        <li>Kinesis pushes data to consumers over HTTP/2</li>
+        <li>Reduced Latency (~70ms)</li>
+    </ul>
+</div>
+
+<div id="scaling">
+Kinesis Scaling Operations
+    <ul>
+        <li><b>Adding Shards known as Shard Splitting</b></li>
+        <li>increase the stream capacity</li>
+        <li>used to divide hot shard</li>
+        <li>old shard is closed and deleted once data in it expired.</li>
+        <br>
+        <li><b>Merging Shards</b></li>
+        <li>decrease the stream capacity and saves cost</li>
+        <li>group two shards with low traffic</li>
+        <li>old shards are closed and deleted based on data expiration.</li>
+        <br>
+        <li><b>Out of Order records after resharding</b></li>
+        <li>If you start reading the child before completing reading the parent, you could read data for a particular hash key out of order </li>
+        <li>in order to prevetn that hapenning - after reshard read entire data from parent shard first until you don't have new records.</li>
+        <li>KCL has this logic already built in</li>
+        <br>
+        <li><b>Auto Scaling</b></li>
+        <li>not native feature</li>
+        <li>UpdateShardCount is the API call</li>
+        <li>we can implement autoscaling with AWS Lambda</li>
+        <br>
+        <li><b>Limitation</b></li>
+        <li>resharding cannot be done in parallel, plan capacity in advance.</li>
+        <li>can only perform one resharding operation at a time and it takes a few seconds (1000 shards takes 30k seconds)
+    </ul>
+</div>
+<div>
+Handling Duplicates for Producers
+<ul>
+<li></li>
+</ul>
+</div>
+</div>
 
 ### 2. Kinesis Data Analytics
 ### 3. Kinesis Firehorse
