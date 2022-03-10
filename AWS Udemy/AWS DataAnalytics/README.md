@@ -35,7 +35,7 @@ Data Pipeline
 </ol>
 
 <div id="stream">
-Kinesis Stream Records
+<h2>Kinesis Stream Records</h2>
     <ul>
         <li>Data Blob - upto 1MB </li>
         <li>Record Key </li>
@@ -44,9 +44,9 @@ Kinesis Stream Records
 </div>
 
 <div id="producer">
-Kinesis Producer
+<h2>Kinesis Producer</h2>
 <ul>
-    <li>Kinesis Producer SDK</li>
+    <h3><li>Kinesis Producer SDK</li></h3>
     <ul>
         <li>PutRecord (one record)\PutRecords (many records)</li>
         <li>If limit exceeeds throws ProvisionedThroughputExceeded</li>
@@ -54,7 +54,7 @@ Kinesis Producer
             <li>Solution: Retries with backoff, Increase shards (scaling), Ensure partition key is a good one</li>
         </ul>
     </ul>
-    <li>Kinesis Producer Library (KPL)</li>
+    <h3><li>Kinesis Producer Library (KPL)</li></h3>
     <ul>
         <li>used for building high performance, long running producers</li>
         <li>automated and configurable retry mechanism</li>
@@ -68,21 +68,21 @@ Kinesis Producer
         <li>Compression should be implemented by user</li>
         <li>Records must be de-coded with KCl or other helper library</li>
     </ul>
-    <li>Kinesis Agent</li>
+    <h3><li>Kinesis Agent</li></h3>
     <ul>
         <li>monitor log files and send them to Kinesis Data Streams</li>
         <li>handles file rotation, checkpointing, and retry upon failures</li>
         <li>metrics to cloudwatch</li>
         <li>pre process data before sending to streams</li>
     </ul>
-    <li>Spark, Log4j, Kafka</li>
+    <h3><li>Spark, Log4j, Kafka</li></h3>
 </ul>
 </div>
 
 <div id="consumer">
-Kinesis Consumer
+<h2>Kinesis Consumer</h2>
 <ul>
-    <li>Kinesis Consumers - Classic</li>
+    <h3><li>Kinesis Consumers - Classic</li></h3>
     <ul>
         <li>Kinesis SDK</li>
         <ul>
@@ -114,7 +114,7 @@ Kinesis Consumer
             <li>used to trigger notifications/ send emails in real time.</li>
         </ul>
     </ul>
-    <li>Kinesis Enhanced Fan Out</li>
+    <h3><li>Kinesis Enhanced Fan Out</li></h3>
     <ul>
         <li>works with KCL 2.0 and lambda (nov 2018)</li>
         <li>each consumer get 2MB/s of provisioned throughout per shard, means 20 consumer -> 40 MB/s per shard</li>
@@ -124,35 +124,35 @@ Kinesis Consumer
 </div>
 
 <div id="scaling">
-Kinesis Scaling Operations
+<h2>Kinesis Scaling Operations</h2>
     <ul>
-        <li><b>Adding Shards known as Shard Splitting</b></li>
+        <h3><li><b>Adding Shards known as Shard Splitting</b></li></h3>
         <li>increase the stream capacity</li>
         <li>used to divide hot shard</li>
         <li>old shard is closed and deleted once data in it expired.</li>
         <br>
-        <li><b>Merging Shards</b></li>
+        <h3><li><b>Merging Shards</b></li></h3>
         <li>decrease the stream capacity and saves cost</li>
         <li>group two shards with low traffic</li>
         <li>old shards are closed and deleted based on data expiration.</li>
         <br>
-        <li><b>Out of Order records after resharding</b></li>
+        <h3><li><b>Out of Order records after resharding</b></li></h3>
         <li>If you start reading the child before completing reading the parent, you could read data for a particular hash key out of order </li>
         <li>in order to prevetn that hapenning - after reshard read entire data from parent shard first until you don't have new records.</li>
         <li>KCL has this logic already built in</li>
         <br>
-        <li><b>Auto Scaling</b></li>
+        <h3><li><b>Auto Scaling</b></li></h3>
         <li>not native feature</li>
         <li>UpdateShardCount is the API call</li>
         <li>we can implement autoscaling with AWS Lambda</li>
         <br>
-        <li><b>Limitation</b></li>
+        <h3><li><b>Limitation</b></li></h3>
         <li>resharding cannot be done in parallel, plan capacity in advance.</li>
         <li>can only perform one resharding operation at a time and it takes a few seconds (1000 shards takes 30k seconds)
     </ul>
 </div>
 <div id="duplicate">
-Handling Duplicates for Producers
+<h2>Handling Duplicates for Producers</h2>
 <ul>
 <li>producer retries can create duplicates due to network timeouts</li>
 <li>Fix: Embed unique record ID in the data to de-duplicate on the consumer side</li>
@@ -163,7 +163,7 @@ Handling Duplicates for Producers
 </div>
 
 <div id = "security">
-Kinesis Security
+<h2>Kinesis Security</h2>
 <ul>
 <li>control access/authorization using IAM policies</li>
 <li>encryption in flight using HTTPS endpoints</li>
