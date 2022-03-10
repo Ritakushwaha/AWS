@@ -31,6 +31,7 @@ Data Pipeline
 <li><a href=#consumer>Kinesis Consumer</a></li>
 <li><a href=#scaling>Kinesis Scaling Operations</a></li>
 <li><a href=#duplicate>Handling Duplicates for Producers</a></li>
+<li><a href=#security>Kinesis Security</a></li>
 </ol>
 
 <div id="stream">
@@ -158,6 +159,17 @@ Handling Duplicates for Producers
 <br>
 <li>consumer retries can make your app read the same data twice, it cna happen when worker terminates unexpectedly, worker instances are added or removed, shards merged or split, or at the time of app deployment.</li>
 <li>Fix: make consumer app idempotent. Or handle the duplicate data at final end.</li>
+</ul>
+</div>
+
+<div id = "security">
+Kinesis Security
+<ul>
+<li>control access/authorization using IAM policies</li>
+<li>encryption in flight using HTTPS endpoints</li>
+<li>encryption at rest using KMS</li>
+<li>client side encryption should be manually done</li>
+<li>VPC endpoints available for Kinesis to access within VPC</li>
 </ul>
 </div>
 </div>
