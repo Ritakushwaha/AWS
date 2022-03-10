@@ -30,6 +30,7 @@ Data Pipeline
 <li><a href = #producer>Kinesis Producer</a></li>
 <li><a href=#consumer>Kinesis Consumer</a></li>
 <li><a href=#scaling>Kinesis Scaling Operations</a></li>
+<li><a href=#duplicate>Handling Duplicates for Producers</a></li>
 </ol>
 
 <div id="stream">
@@ -149,10 +150,14 @@ Kinesis Scaling Operations
         <li>can only perform one resharding operation at a time and it takes a few seconds (1000 shards takes 30k seconds)
     </ul>
 </div>
-<div>
+<div id="duplicate">
 Handling Duplicates for Producers
 <ul>
-<li></li>
+<li>producer retries can create duplicates due to network timeouts</li>
+<li>Fix: Embed unique record ID in the data to de-duplicate on the consumer side</li>
+<br>
+<li>consumer retries can make your app read the same data twice, it cna happen when worker terminates unexpectedly, worker instances are added or removed, shards merged or split, or at the time of app deployment.</li>
+<li>Fix: make consumer app idempotent. Or handle the duplicate data at final end.</li>
 </ul>
 </div>
 </div>
