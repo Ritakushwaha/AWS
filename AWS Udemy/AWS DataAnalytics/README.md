@@ -1,4 +1,4 @@
-## Collection 
+# Collection 
 
 ### Real Time - Immediate Actions
 ```
@@ -23,7 +23,7 @@ Data Pipeline
 - real time big data
 - stream processing framework
 
-### 1. Kinesis Data Stream
+### 1. Kinesis Data Stream (Real Time)
 <div>
 <ol>
 <li><a href = #stream>Kinesis Stream Records</a></li>
@@ -175,4 +175,46 @@ Data Pipeline
 </div>
 
 ### 2. Kinesis Data Analytics
-### 3. Kinesis Firehorse
+### 3. Kinesis Data Firehorse (Near Real Time)
+<div id="kdf">
+    <ul>
+        <li>fully managed service, no administration</li>
+        <li>near real time (latency 60 seconds minimum for non full batches)</li>
+        <li>load data into Redshift/S3/Elastic Search/Splunk</li>
+        <li>automatic scaling</li>
+        <li>data conversion - json to Parquet/ORC(only for s3)</li>
+        <li>data transformation - csv to json (using Lambda)</li>
+        <li>supports compression when target is S3 (gzip, zip and snappy)</li>
+        <li>Spark/KCL do not read from KDF</li>
+        [KDF Flow](./images/KDF%20flow.png)
+    </ul>
+</div>
+<div id="buffer">
+<h2>Firehose Buffer Sizing</h2>
+    <ul>
+        <li>accumulates records in buffer</li>
+        <li>flushed based on time(min 1 minute) and size(few mb) rules</li>
+        <li>automatically increase buffer size to increase throughput</li>
+    </ul>
+<h2>Kinesis Data Stream v/s Kinesis Firehose</h2>
+<h3>Streams</h3>
+    <ul>
+        <li>custom code for producer/consumer</li>
+        <li>real time (~200 ms for classic, ~70 ms for enhaced fan-out)</li>
+        <li>must manage scaling (shard splitting/merging)</li>
+        <li>data storage for 1-365 days, replay capability, multi consumers</li>
+        <li>use with lambda to insert data in real-time to Elastic Search</li>
+    </ul>
+<h3>Firehose</h3>
+    <ul>
+        <li>fully managed, send to s3. redshift, elastic search, splunk</li>
+        <li>serverless data transformations with lambda</li>
+        <li>near real time (lowest buffer time is 1 minute)</li>
+        <li>automated scaling</li>
+        <li>no data storage</li>
+    </ul>
+</div>
+
+# Storage
+## S3 (Simple Storage Service)
+
