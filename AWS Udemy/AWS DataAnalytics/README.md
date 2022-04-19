@@ -218,3 +218,12 @@ Data Pipeline
 # Storage
 ## S3 (Simple Storage Service)
 
+<div id = "overview">
+<h3>S3 Overview</h3>
+    <ul>
+    Buckets
+        <li>allows to store objects (files) in buckets (directories)</li>
+        <li>must have globally unique name</li>
+        <li>defined at region level</li>
+        <li>naming convention - no uppercase, no underscore, 3-63 characters, not an IP, start with lowercase or number</li>
+    </ul>
